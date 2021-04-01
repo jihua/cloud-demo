@@ -1,0 +1,10 @@
+# \u7AEF\u53E3\u53F7\u4E3A8080\uFF08\u9ED8\u8BA4\u4E5F\u662F8080\uFF09
+server:
+  port: 8080
+# \u7981\u6B62\u6CE8\u518C\u81EA\u5DF1
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+##\u5C31\u662F\u8FD9\u4E2A\u8981\u8986\u76D6\uFF0C\u5199\u6210\u81EA\u5DF1\u7684\u5730\u5740
+    serviceUrl.defaultZone: http://localhost:8080/eureka/

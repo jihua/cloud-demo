@@ -1,0 +1,35 @@
+server:
+  #\u7F51\u5173\u7AEF\u53E38083
+  port: 8083
+spring:
+  application:
+    #\u5728\u670D\u52A1\u4E2D\u5FC3\u7684\u5E94\u7528\u540D\u79F0
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          #\u81EA\u52A8\u6620\u5C04eureka\u4E0B\u7684\u670D\u52A1\u8DEF\u7531
+          enabled: true
+          #\u5F00\u542F\u670D\u52A1\u540D\u79F0\u5C0F\u5199
+          lower-case-service-id: true
+      #\u670D\u52A1\u7194\u65AD\uFF0C\u964D\u7EA7
+      default-filters:
+      - name: Hystrix
+        args:
+          name: fallbackcmd
+          fallbackUri: forward:/fallback
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8080/eureka/
+
+# hystrix\u7194\u65AD\u5668\uFF0C3\u79D2\u540E\u81EA\u52A8\u8D85\u65F6
+hystrix:
+  command:
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
